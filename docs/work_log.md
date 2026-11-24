@@ -1,18 +1,6 @@
 # Work Log
 
-Chronological record of all meaningful work. Each entry covers one infrastructure task, user journey, or significant change.
-
-## Format
-
-### [Date] — [ID]: [Task/Journey Name]
-
-- **Work Done**: [What was implemented]
-- **Files Created/Modified**: [List]
-- **Decisions**: [Any decisions made, or "none"]
-- **Security Check**: [Pass/fail summary, or "not applicable"]
-- **Tests**: [Tests created, or "none" / "not applicable"]
-- **Notes**: [Anything relevant for future sessions]
-
-## Log
-
-(Entries added during implementation)
+### 2026-11-24 — Semilla + Planning Mode
+- **Work Done**: copia limpia de La Maquinaria; adaptador de modelo, cola de aprobaciones, orquestador, agente Administrativo y CLI; `/init-agent-system` corrido con las respuestas del Workbook (requirements, scope, risks, nfr, architecture, stack, data model, api, wireframes, IT/UJ, decisiones).
+- **Files**: ver `git log`. **Decisions**: DEC-01 a DEC-06. **Security Check**: no aplica aun (sin auth ni conexiones). **Tests**: 5 con `unittest`, pasan.
+- **Notes**: el plan espera la aprobacion de Karina.

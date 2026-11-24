@@ -1,29 +1,23 @@
 # UI Wireframes
 
 ## Navigation Structure
-
-(Main navigation layout, sidebar/topbar organization, route structure)
-
-## Key Screens
-
-(Screen layouts described per page — what components appear, where, and what data they display)
-
-### Format
-
-```
-Page: [Name]
-Route: /path
-Auth: required | public
-Layout:
-  - [Component description and position]
-  - [Component description and position]
-Actions:
-  - [User actions available on this page]
-States:
-  - Empty: [What to show when no data]
-  - Error: [What to show on error]
-```
+Barra lateral: Aprobaciones | Preguntarle al orquestador | Agentes | Credenciales | Actividad. Una sola pagina `frontend/index.html`.
 
 ## Screens
-
-(Populated during planning)
+```
+Page: Aprobaciones (inicio)   Route: #aprobaciones   Auth: required
+  Layout: lista de tarjetas (destinatario, asunto, borrador completo editable)
+  Actions: Aprobar | Rechazar | Editar texto antes de aprobar
+  States: Empty: "No hay nada pendiente"  | Error: mensaje claro, sin datos sensibles
+Page: Preguntarle al orquestador   Route: #chat
+  Layout: caja de texto + respuesta + indicador de que agente respondio
+  Actions: enviar pedido
+  States: Empty: ejemplos ("como estan las entregas?") | Error: "no pude resolverlo"
+Page: Agentes   Route: #agentes
+  Layout: tabla (agente, prioridad, construido, ultima ejecucion)
+Page: Credenciales   Route: #credenciales
+  Layout: lista de nombres (modelo, Gmail) con estado "definida / falta"; nunca muestra el valor
+  Actions: cargar / reemplazar
+Page: Actividad   Route: #actividad
+  Layout: tabla cronologica de propuestas y decisiones
+```

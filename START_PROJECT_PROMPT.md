@@ -1,6 +1,6 @@
 # Start Project
 
-> Completado a partir del Workbook de Karina (ver `Contexto/perfil-karina.md`). Karina: revisalo, corregí lo que esté mal y recién después corré `/init-agent-system`.
+> Completado a partir del Workbook de Karina (ver `Contexto/perfil-karina.md`). Karina: revisalo y corregí lo que esté mal. `/init-agent-system` ya fue corrido por Yami: el plan está en `design/` y `planning/`.
 
 ---
 

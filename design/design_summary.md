@@ -1,11 +1,11 @@
 # Design Summary: Sistema agentico de ARDIC
 
-Estado: SEMILLA armada por Yami. Karina revisa y aprueba el plan en su primera sesion (`/init-agent-system`).
+Estado: PLAN COMPLETO (init-agent-system ya corrido) + semilla de codigo. Falta la aprobacion de Karina.
 
 ## Stack
 - Backend: Python 3.9+, solo libreria estandar por ahora (sin dependencias). Carpeta `backend/app`.
 - Datos: CSV en `data/real/` (ignorada por git) + SQLite para la cola de aprobaciones.
-- Frontend / panel admin: pendiente (Regla 4: obligatorio). Ver IT-5.
+- API: FastAPI (IT-7). Panel admin: HTML simple, `frontend/index.html` (IT-5, Regla 4). SQLite como base; sin base vectorial.
 
 ## Modulos
 - `llm.py`: adaptador unico de modelo (Regla 9). `mock` y `openai_compatible`.
@@ -28,3 +28,9 @@ Solo CLI. A definir.
 
 ## Agentes
 Orquestador y Administrativo sembrados. Financiero y CM/SEO pendientes.
+
+## Orden de construccion
+UJ-1 con datos reales (victoria rapida) -> IT-2 swap test -> IT-7 API -> IT-5 panel -> IT-4 borradores Gmail -> IT-6 Docker -> UJ-2 financiero -> UJ-3 CM/SEO.
+
+## Riesgos top
+Mail saliente sin validar (cola de aprobaciones), datos inventados (el codigo calcula), datos de clientes en GitHub (`data/real/` ignorada).

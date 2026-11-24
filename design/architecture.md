@@ -2,33 +2,42 @@
 
 ## Overview
 
-(System architecture diagram and description — populated during planning)
+```
+Karina --(CLI hoy / panel web despues)--> API --> Orquestador --> [Administrativo | Financiero | CM-SEO]
+                                                       |                 |
+                                                       |                 +--> propone --> COLA DE APROBACIONES --(OK de Karina)--> envio (borrador Gmail)
+                                                       +--> Adaptador de modelo (config) --> proveedor de IA
+Datos: data/real/*.csv  |  Estado: SQLite (aprobaciones, actividad, credenciales cifradas)
+```
+
+El orquestador y los agentes son el producto; La Maquinaria es el taller que los construye.
 
 ## Module Structure
 
-(Backend and frontend module organization)
+- `backend/app/llm.py` adaptador de modelo. `approvals.py` cola. `orchestrator.py` ruteo. `agents/` un archivo por agente. `cli.py` pruebas.
+- Pendiente: `api.py` (FastAPI), `auth.py`, `credentials.py` (cifrado), `connectors/gmail.py`.
+- `frontend/index.html`: panel admin (una pagina, sin framework).
 
 ## Technology Choices
 
-See stack_selection.md for detailed rationale.
+Ver `stack_selection.md`.
 
 ## Credential Level Mapping
 
-- **Level 1 (.env)**: [Infrastructure secrets — DB URL, JWT secret, encryption key]
-- **Level 2 (deployment)**: [Service URLs, feature flags, environment config]
-- **Level 3 (admin panel)**: [Third-party API keys, integration tokens — encrypted at rest]
+- **Level 1 (.env)**: `JWT_SECRET`, `ENCRYPTION_KEY`, `DATABASE_URL` (SQLite local).
+- **Level 2 (deployment)**: `APP_ENV`, `APP_PORT`, URLs del servicio.
+- **Level 3 (panel admin, cifrado)**: API key del modelo, credenciales de Gmail (OAuth), a futuro SAE/WhatsApp.
 
-## Model Provider Layer (Rule 9 — portability)
+## Model Provider Layer (Rule 9)
 
-The LLM provider is a swappable plug, isolated behind one adapter so the system survives changing providers.
-
-- **Adapter**: [single module all AI calls go through — e.g. `ai/provider.ts`. No direct SDK calls outside it.]
-- **Config-driven**: each model use is `{ provider, model, apiKey, baseUrl? }` in config — never hardcoded. API key = Level 3 credential.
-- **Supported providers**: [Anthropic / OpenAI / Google / local-Ollama / OpenRouter — list what this project enables]
-- **What a provider swap touches**: only the config. NOT system prompts, skills, memory, data, or integrations.
-- **What the adapter isolates** (the honest caveats): tool/function-call format differences, response shape, token/context limits, feature support (vision, tool use). These live inside the adapter, not in agent logic.
-- **Swap test (verification)**: switch the config to a second provider and re-run the standard test prompts. System works (light prompt re-tuning allowed; no architectural change).
+- **Adapter**: `backend/app/llm.py` (`LLM.complete`). Ningun agente llama a un SDK directo.
+- **Config-driven**: `config/agents.json` -> `model_default` `{provider, model, base_url, api_key_env}`; se puede sobreescribir por agente. La key es Nivel 3.
+- **Supported providers**: `mock` (pruebas) y `openai_compatible` (OpenAI, OpenRouter, Ollama, Google y Anthropic por su endpoint compatible; verificar el base_url vigente en la doc oficial al configurarlo).
+- **Swap touches**: solo la config. No los manuales de agentes, ni los datos, ni las integraciones.
+- **Isolated in adapter**: formato de respuesta, limites de contexto, errores. Hoy no se usa tool calling: los agentes calculan en codigo.
+- **Swap test (IT-2)**: correr los mismos 3 pedidos con dos proveedores distintos; debe funcionar cambiando solo la config.
 
 ## Infrastructure
 
-(Database, caching, external services, deployment target)
+- Local en la compu de Karina al inicio. Docker + servidor (EasyPanel/VPS) cuando el programa llegue a deploy (dias 17-18).
+- Base: SQLite local.

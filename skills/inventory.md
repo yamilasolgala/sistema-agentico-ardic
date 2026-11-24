@@ -1,19 +1,14 @@
 # Skills Inventory
 
-## Format
-
 | Skill | Scope | Status | Notes |
 |-------|-------|--------|-------|
-| [name] | base / project | selected / rejected / available | [reason] |
+| (ninguna del proyecto aun) | project | pending | Los manuales de agentes viven en codigo hoy; evaluar pasarlos a skills cuando haya 2+ agentes |
 
 ## Selected Skills
-
-(Skills actively used in this project — populated during planning)
+Ninguna.
 
 ## Rejected Skills
-
-(Skills evaluated and rejected — with reason)
+Ninguna evaluada todavia.
 
 ## Available Skills
-
-(Skills available in the environment — evaluated during planning)
+No se instalo nada de terceros. Si Karina descarga una skill, auditarla antes (clase de skills, `skill-audit`).

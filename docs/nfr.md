@@ -1,23 +1,19 @@
 # Non-Functional Requirements
 
 ## Performance
-
-- [Target response times, throughput, resource limits]
+- Un resumen diario se genera en menos de 30 segundos con hasta ~500 filas por archivo. Sin requisitos de alta concurrencia (1 a 3 usuarios).
 
 ## Security
-
-- [Authentication method, encryption requirements, compliance needs]
+- Auth del panel: JWT + bcrypt; un solo rol admin (Karina) al inicio.
+- Keys del modelo: Nivel 3, cifradas en reposo en el panel; hasta entonces, variable de entorno.
+- Ningun dato de clientes en logs ni mensajes de error. `data/real/` fuera de git.
+- Acciones hacia afuera: siempre por la cola de aprobaciones.
 
 ## Accessibility
-
-- [WCAG level, screen reader support, keyboard navigation]
+- Panel legible, contraste suficiente, navegable por teclado. Idioma: espanol.
 
 ## Observability
-
-- [Logging level, monitoring, alerting requirements]
+- Registro de cada propuesta, aprobacion y rechazo (quien, cuando). Registro de errores sin datos sensibles.
 
 ## Scalability
-
-- [Expected load, growth projections, scaling strategy]
-
-(Populated during planning)
+- Una empresa, pocos usuarios. SQLite alcanza. Migrar a Postgres/Supabase solo si se suman empresas o usuarios simultaneos.
