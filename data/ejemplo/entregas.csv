@@ -1,0 +1,5 @@
+oc,cliente,producto,fecha_compromiso,estado
+OC-1001,Empacadora Ejemplo SA,Bolsa laminada 25x35 cal 80,2026-11-26,pendiente
+OC-1002,Alimentos Muestra SRL,Film termoformable 30cm,2026-11-21,pendiente
+OC-1003,Cliente Ficticio SA,Bolsa stand-up 18x28,2026-12-10,pendiente
+OC-0990,Empacadora Ejemplo SA,Bolsa laminada 20x30,2026-11-10,entregada

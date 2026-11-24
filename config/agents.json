@@ -1,0 +1,15 @@
+{
+  "_comentario": "El modelo de IA es un enchufe (Regla 9). Para cambiar de proveedor se toca SOLO este archivo y la variable de entorno de la key. provider: 'mock' (sin IA, para probar) | 'openai_compatible' (OpenAI, OpenRouter, Ollama, Google y Anthropic via endpoint compatible; verificar el base_url vigente en la doc oficial de cada uno).",
+  "model_default": {
+    "provider": "mock",
+    "model": "mock-1",
+    "base_url": "",
+    "api_key_env": "LLM_API_KEY"
+  },
+  "agents": {
+    "administrativo": { "prioridad": 1, "construido": true },
+    "financiero":     { "prioridad": 2, "construido": false },
+    "cm_seo":         { "prioridad": 3, "construido": false }
+  },
+  "seguimiento_cotizaciones_horas": [25, 72]
+}

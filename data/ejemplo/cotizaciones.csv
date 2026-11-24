@@ -1,0 +1,6 @@
+cotizacion,cliente,email,fecha_envio,respondida
+COT-501,Empacadora Ejemplo SA,compras@ejemplo.test,2026-11-20 10:00,no
+COT-502,Alimentos Muestra SRL,hola@muestra.test,2026-11-23 09:00,no
+COT-503,Cliente Ficticio SA,info@ficticio.test,2026-11-12 15:00,no
+COT-504,Otro Cliente SA,ventas@otro.test,2026-11-10 11:00,si
+COT-505,Reciente SA,nuevo@reciente.test,2026-11-24 08:00,no
